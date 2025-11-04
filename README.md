@@ -101,8 +101,8 @@ Use **Guest Mode** for immediate access or **Magic Link** for full features.
 
 ```bash
 # Clone repository
-git clone https://github.com/mitali1045/cookalong-public.git
-cd cookalong-public
+git clone https://github.com/mitali1045/chef_compadre_public.git
+cd chef_compadre_public
 
 # Install dependencies
 npm install
@@ -111,7 +111,6 @@ npm install
 GEMINI_API_KEY=your_key
 SUPABASE_URL=your_url
 SUPABASE_ANON_KEY=your_key
-SUPABASE_SERVICE_ROLE_KEY=your_key
 MAGIC_LINK_REDIRECT_URL=http://localhost:3000
 
 # Set up database (run setup_database.sql in Supabase)

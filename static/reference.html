@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CookAlong — Reference Images</title>
+
+<script async src="https://cse.google.com/cse.js?cx=15ad3e62456da40aa"></script>
+
+<style>
+  :root { color-scheme: dark; }
+  body { margin:0; padding:16px; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background:#0b0b0c; color:#eaeaea; }
+  .wrap { max-width:960px; margin:0 auto; }
+  h3 { margin: 4px 0 14px; font-size: 18px; }
+  .muted { opacity:.75; font-size:12px; }
+  .bar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:8px; }
+  .btn { font-size:12px; padding:6px 10px; border:1px solid #2a2b33; background:#1c1c22; color:#eaeaea; border-radius:8px; text-decoration:none; }
+  .panel { background:#121216; border:1px solid #22232b; border-radius:14px; padding:12px; }
+  /* Loading */
+  #loading { display:flex; align-items:center; gap:8px; font-size:13px; margin:8px 0 12px; }
+  .dot { width:6px; height:6px; border-radius:50%; background:#999; animation:b 1.2s infinite ease-in-out; }
+  .dot:nth-child(2){ animation-delay:.15s } .dot:nth-child(3){ animation-delay:.3s }
+  @keyframes b { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
+  /* Results container (Google renders inside) */
+  .gcse-searchresults-only { min-height: 50vh; }
+  /* Hide Google “web” tab bar clutter in dark mode (keeps images visible) — optional */
+  .gsc-tabsArea { background: transparent !important; }
+</style>
+<noscript>
+  <style>.wrap{max-width:680px}</style>
+</noscript>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <h3 id="hdr">Reference</h3>
+    <div>
+      <a id="openImages" class="btn" target="_blank" rel="noopener" href="#">Open in Google Images ↗</a>
+      <a class="btn" href="/static/voice.html">Back to ChopChop</a>
+    </div>
+  </div>
+
+  <div id="loading" class="muted" aria-live="polite" role="status">
+    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    <span>Loading images…</span>
+  </div>
+
+  <div class="panel">
+    <!-- Results-only container.
+         defaultToImageSearch requires Image search ON in your PSE settings. -->
+    <div class="gcse-searchresults-only"
+         data-defaultToImageSearch="true"
+         data-enableImageSearch="true"
+         data-enableHistory="false"
+         data-linkTarget="_self"
+         data-gname="results">
+    </div>
+  </div>
+
+  <p id="fallback" class="muted" style="display:none;margin-top:10px;">
+    If you don’t see results, a content blocker may be preventing the widget from loading.
+    Use the “Open in Google Images” button above.
+  </p>
+</div>
+
+<script>
+  // Read ?q= from URL, wire “Open in Google Images” fallback
+  const params = new URLSearchParams(location.search);
+  const q = (params.get('q') || '').trim();
+  const hdr = document.getElementById('hdr');
+  const openImages = document.getElementById('openImages');
+  const loading = document.getElementById('loading');
+  const fallback = document.getElementById('fallback');
+
+  if (q) {
+    hdr.textContent = 'Reference: ' + q;
+    openImages.href = 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(q);
+  } else {
+    openImages.href = 'https://www.google.com/imghp';
+  }
+
+  // Let PSE run, then execute our query
+  window.__gcse = {
+    callback: function() {
+      try {
+        const el = google.search.cse.element.getElement('results');
+        if (el && q) el.execute(q);
+      } catch (e) {
+        console.error('Google Custom Search error:', e);
+        // If the API isn't available, show fallback hint
+        fallback.style.display = 'block';
+        loading.style.display = 'none';
+      }
+    }
+  };
+
+  // Safety timeout: if widget never calls back (adblock, CSP), hide loader and show fallback
+  setTimeout(() => {
+    if (loading.style.display !== 'none') {
+      loading.style.display = 'none';
+      fallback.style.display = 'block';
+    }
+  }, 3000);
+
+  // Additional fallback: if no results after 5 seconds, show direct Google Images link
+  setTimeout(() => {
+    const resultsContainer = document.querySelector('.gcse-searchresults-only');
+    if (resultsContainer && resultsContainer.children.length === 0) {
+      fallback.style.display = 'block';
+      fallback.innerHTML = `
+        <p>Reference images not available. <a href="${openImages.href}" target="_blank" rel="noopener">Click here to search Google Images directly</a></p>
+      `;
+    }
+  }, 5000);
+</script>
+</body>
+</html>
+

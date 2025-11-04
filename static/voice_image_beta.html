@@ -1,0 +1,2770 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0a0f1e" />
+  <title>Chef Compadre — Your AI Sous Chef</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==============================================
+       HIGH-CLASS DESIGN SYSTEM
+       Sophisticated, Elegant, Premium
+       ============================================== */
+    
+    :root { 
+      color-scheme: dark;
+      
+      /* Premium Color Palette */
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --primary-dark: #4f46e5;
+      --accent: #06b6d4;
+      --accent-light: #22d3ee;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      
+      /* Sophisticated Backgrounds with Depth */
+      --bg-primary: linear-gradient(135deg, #0a0f1e 0%, #1a1f2e 100%);
+      --bg-secondary: rgba(30, 41, 59, 0.6);
+      --bg-tertiary: rgba(51, 65, 85, 0.4);
+      --bg-card: rgba(30, 41, 59, 0.5);
+      --bg-hover: rgba(71, 85, 105, 0.3);
+      --bg-glass: rgba(255, 255, 255, 0.05);
+      
+      /* Glassmorphism */
+      --glass-bg: rgba(30, 41, 59, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --glass-blur: blur(20px);
+      
+      /* Refined Borders & Shadows */
+      --border: rgba(71, 85, 105, 0.3);
+      --border-light: rgba(148, 163, 184, 0.2);
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+      --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+      
+      /* Premium Typography */
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-accent: #818cf8;
+      
+      /* Elegant Spacing */
+      --space-xs: 0.375rem;
+      --space-sm: 0.5rem;
+      --space-md: 0.75rem;
+      --space-lg: 1rem;
+      --space-xl: 1.5rem;
+      --space-2xl: 2rem;
+      --space-3xl: 3rem;
+      
+      /* Refined Border Radius */
+      --radius-sm: 0.5rem;
+      --radius: 0.75rem;
+      --radius-md: 1rem;
+      --radius-lg: 1.25rem;
+      --radius-xl: 1.5rem;
+      --radius-full: 9999px;
+      
+      /* Smooth Transitions */
+      --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ==============================================
+       MAIN LAYOUT - Sophisticated Structure
+       ============================================== */
+    
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
+
+    /* Background Gradient Animation */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, #0a0f1e 0%, #1a1f2e 50%, #0a0f1e 100%);
+      background-size: 200% 200%;
+      animation: gradientShift 15s ease infinite;
+      z-index: -1;
+    }
+
+    /* ==============================================
+       HEADER - Premium & Minimal
+       ============================================== */
+    
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 68px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--space-xl);
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: -0.02em;
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      color: var(--primary-light);
+      transform: translateY(-1px);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      box-shadow: var(--shadow-glow);
+      transition: var(--transition);
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(5deg) scale(1.05);
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+    }
+
+    .status-text {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-full);
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      transition: var(--transition);
+    }
+
+    .status-text::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--success);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .auth-status {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ==============================================
+       SIDEBAR - Elegant & Functional
+       ============================================== */
+    
+    aside {
+      width: 320px;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-right: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-slow);
+      margin-top: 68px;
+      overflow-y: auto;
+      box-shadow: var(--shadow);
+    }
+
+    aside.collapsed {
+      width: 72px;
+    }
+
+    .sidebar-section {
+      padding: var(--space-xl);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: var(--space-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .section-title::before {
+      content: '';
+      width: 3px;
+      height: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: var(--radius-full);
+    }
+
+    /* ==============================================
+       BUTTONS - Premium Design
+       ============================================== */
+    
+    button, .btn {
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      min-height: 44px;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    button:active::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      box-shadow: var(--shadow), var(--shadow-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md), 0 0 30px rgba(99, 102, 241, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: var(--bg-glass);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-light);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .btn-icon {
+      min-width: 44px;
+      min-height: 44px;
+      padding: 0;
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+    }
+
+    /* ==============================================
+       MAIN CONTENT - Chat Area
+       ============================================== */
+    
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-top: 68px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .main-content {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: var(--space-2xl);
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Scrollbar */
+    .main-content::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .main-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .main-content::-webkit-scrollbar-thumb {
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-full);
+    }
+
+    .main-content::-webkit-scrollbar-thumb:hover {
+      background: var(--bg-hover);
+    }
+
+    .chat-messages {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      min-height: calc(100vh - 200px);
+    }
+
+    /* ==============================================
+       MESSAGES - Sophisticated Design
+       ============================================== */
+    
+    .message {
+      display: flex;
+      gap: var(--space-lg);
+      align-items: flex-start;
+      animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .message-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow);
+    }
+
+    .message.user .message-avatar {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    }
+
+    .message.assistant .message-avatar {
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      box-shadow: var(--shadow-glow);
+    }
+
+    .message-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .message-bubble {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      padding: var(--space-lg) var(--space-xl);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .message-bubble:hover {
+      background: var(--bg-secondary);
+      border-color: var(--border-light);
+      transform: translateX(2px);
+    }
+
+    .message.user .message-bubble {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    .message-text {
+      color: var(--text-primary);
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      font-size: 0.9375rem;
+    }
+
+    .message-text strong {
+      color: var(--text-accent);
+      font-weight: 600;
+    }
+
+    .message-text code {
+      background: rgba(99, 102, 241, 0.1);
+      padding: 0.125rem 0.375rem;
+      border-radius: var(--radius-sm);
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.875rem;
+    }
+
+    .message-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Typing Indicator */
+    .typing-indicator {
+      display: none;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-lg);
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .typing-indicator.active {
+      display: flex;
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 4px;
+    }
+
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      animation: typingDot 1.4s infinite;
+    }
+
+    .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes typingDot {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-10px); opacity: 1; }
+    }
+
+    /* ==============================================
+       NUTRITION CARD - Premium Design
+       ============================================== */
+    
+    .nutrition-card {
+      background: linear-gradient(135deg, var(--glass-bg), rgba(16, 185, 129, 0.05));
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      margin: var(--space-lg) 0;
+      box-shadow: var(--shadow-md);
+      animation: slideIn 0.4s ease;
+    }
+
+    .nutrition-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+    }
+
+    .nutrition-header span {
+      font-size: 1.5rem;
+    }
+
+    .nutrition-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .nutrition-item {
+      text-align: center;
+      padding: var(--space-lg);
+      background: var(--bg-glass);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .nutrition-item:hover {
+      background: var(--bg-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .nutrition-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--success);
+      margin-bottom: var(--space-xs);
+      letter-spacing: -0.02em;
+    }
+
+    .nutrition-label {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==============================================
+       INPUT AREA - Refined & Accessible
+       ============================================== */
+    
+    .input-area {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-top: 1px solid var(--glass-border);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow-md);
+    }
+
+    .input-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-end;
+    }
+
+    #chatInput {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg) var(--space-xl);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      resize: none;
+      max-height: 150px;
+      min-height: 54px;
+      transition: var(--transition);
+    }
+
+    #chatInput:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      background: rgba(30, 41, 59, 0.8);
+    }
+
+    #chatInput::placeholder {
+      color: var(--text-muted);
+    }
+
+    /* Voice Button - Prominent */
+    #voiceBtn {
+      min-width: 54px;
+      min-height: 54px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: white;
+      font-size: 1.25rem;
+      box-shadow: var(--shadow), 0 0 20px rgba(6, 182, 212, 0.3);
+      transition: var(--transition);
+    }
+
+    #voiceBtn:hover {
+      transform: scale(1.05);
+      box-shadow: var(--shadow-lg), 0 0 30px rgba(6, 182, 212, 0.5);
+    }
+
+    #voiceBtn.listening {
+      animation: voicePulse 1.5s ease-in-out infinite;
+      background: linear-gradient(135deg, var(--danger), #ff6b6b);
+    }
+
+    @keyframes voicePulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+      50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+    }
+
+    #sendBtn {
+      min-width: 54px;
+      min-height: 54px;
+      border-radius: var(--radius-md);
+    }
+
+    /* ==============================================
+       FORMS & INPUTS
+       ============================================== */
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="url"],
+    input[type="file"] {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      transition: var(--transition);
+      min-height: 44px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    input::placeholder {
+      color: var(--text-muted);
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .form-group {
+      margin-bottom: var(--space-xl);
+    }
+
+    .form-row {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-end;
+    }
+
+    /* Voice Controls */
+    .voice-control {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .voice-control label {
+      margin: 0;
+      min-width: 80px;
+    }
+
+    select {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.9375rem;
+      cursor: pointer;
+      min-height: 44px;
+      transition: var(--transition);
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: var(--radius-full);
+      background: var(--bg-tertiary);
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: var(--shadow-md);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      cursor: pointer;
+      border: none;
+      box-shadow: var(--shadow);
+    }
+
+    /* ==============================================
+       MOBILE OPTIMIZATIONS
+       ============================================== */
+    
+    @media (max-width: 768px) {
+      .header {
+        height: 60px;
+        padding: 0 var(--space-lg);
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.125rem;
+      }
+
+      .status-text {
+        display: none;
+      }
+
+      aside {
+        position: fixed;
+        left: 0;
+        top: 60px;
+        bottom: 0;
+        width: 100%;
+        max-width: 320px;
+        transform: translateX(-100%);
+        z-index: 999;
+        box-shadow: var(--shadow-lg);
+      }
+
+      aside.show {
+        transform: translateX(0);
+      }
+
+      main {
+        margin-top: 60px;
+        width: 100%;
+      }
+
+      .main-content {
+        padding: var(--space-lg);
+      }
+
+      .chat-messages {
+        gap: var(--space-lg);
+      }
+
+      .message-bubble {
+        padding: var(--space-md) var(--space-lg);
+      }
+
+      .input-area {
+        padding: var(--space-lg);
+      }
+
+      .input-container {
+        gap: var(--space-sm);
+      }
+
+      #voiceBtn,
+      #sendBtn {
+        min-width: 48px;
+        min-height: 48px;
+        font-size: 1.125rem;
+      }
+
+      button, .btn {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+      }
+
+      .sidebar-section {
+        padding: var(--space-lg);
+      }
+
+      .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .message {
+        gap: var(--space-md);
+      }
+
+      .message-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+
+      .nutrition-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      min-width: 44px;
+      min-height: 44px;
+      background: var(--bg-glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 1.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Overlay for mobile menu */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 15, 30, 0.8);
+      z-index: 998;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* ==============================================
+       UTILITIES & HELPERS
+       ============================================== */
+    
+    .text-center { text-align: center; }
+    .text-muted { color: var(--text-muted); }
+    .text-primary { color: var(--text-primary); }
+    .text-accent { color: var(--text-accent); }
+    
+    .mt-1 { margin-top: var(--space-lg); }
+    .mt-2 { margin-top: var(--space-xl); }
+    .mb-1 { margin-bottom: var(--space-lg); }
+    .mb-2 { margin-bottom: var(--space-xl); }
+    
+    .hidden { display: none !important; }
+    
+    /* Loading Spinner */
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Success/Error Messages */
+    .alert {
+      padding: var(--space-lg);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-lg);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .alert-success {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--success);
+    }
+
+    .alert-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: var(--danger);
+    }
+
+    /* Test Voice Button */
+    #testVoice {
+      width: 100%;
+      margin-top: var(--space-md);
+    }
+  </style>
+  
+  <style>
+    /* ==============================================
+       DASHBOARD STYLES
+       ============================================== */
+    
+    .dashboard-container {
+      padding: var(--space-2xl);
+      max-width: 1400px;
+      margin: 0 auto;
+      min-height: calc(100vh - 68px);
+    }
+
+    .dashboard-container.hidden {
+      display: none;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-xl);
+    }
+
+    /* Welcome Hero Card */
+    .welcome-card {
+      grid-column: 1 / -1;
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-3xl);
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .welcome-icon {
+      font-size: 4rem;
+      margin-bottom: var(--space-lg);
+      animation: wave 2s ease-in-out infinite;
+    }
+
+    .welcome-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .welcome-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-2xl);
+    }
+
+    .start-chat-btn {
+      font-family: inherit;
+      font-size: 1.125rem;
+      font-weight: 700;
+      padding: 1rem 2.5rem;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .start-chat-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 20px 30px rgba(99, 102, 241, 0.5);
+    }
+
+    .start-voice-btn {
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: var(--glass-blur);
+      margin-left: var(--space-md);
+    }
+
+    .start-voice-btn:hover {
+      background: var(--bg-hover);
+    }
+
+    /* Dashboard Cards */
+    .dash-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .dash-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-light);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+    }
+
+    .card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-xs);
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: var(--space-xl) 0;
+      color: var(--text-muted);
+    }
+
+    .shopping-item {
+      padding: var(--space-md);
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--space-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .recipe-grid {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .recipe-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .recipe-item:hover {
+      background: var(--bg-hover);
+      transform: translateX(5px);
+    }
+
+    .recipe-emoji {
+      font-size: 2rem;
+    }
+
+    .recipe-info {
+      flex: 1;
+    }
+
+    .recipe-name {
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .recipe-meta {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    /* Chat Interface Toggle */
+    .chat-view {
+      display: none;
+    }
+
+    .chat-view.active {
+      display: block;
+    }
+
+    /* Login Modal Overlay */
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(10, 15, 30, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 20000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .login-overlay.hidden {
+      display: none;
+    }
+
+    .login-modal {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-3xl);
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: slideUp 0.4s ease;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: var(--space-2xl);
+    }
+
+    .login-chef-icon {
+      font-size: 4rem;
+      margin-bottom: var(--space-lg);
+      animation: wave 2s ease-in-out infinite;
+    }
+
+    .login-title {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: var(--space-sm);
+    }
+
+    .login-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+
+    .login-form {
+      margin-top: var(--space-xl);
+    }
+
+    .login-input {
+      width: 100%;
+      padding: var(--space-lg);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font-size: 1rem;
+      margin-bottom: var(--space-lg);
+      transition: var(--transition);
+    }
+
+    .login-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: var(--space-lg);
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 1.125rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+    }
+
+    .login-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .login-divider {
+      text-align: center;
+      margin: var(--space-xl) 0;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    .guest-btn {
+      width: 100%;
+      padding: var(--space-md);
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .guest-btn:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    /* Mobile Responsive Dashboard */
+    @media (max-width: 768px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome-title {
+        font-size: 1.5rem;
+      }
+
+      .welcome-card {
+        padding: var(--space-2xl);
+      }
+
+      .start-voice-btn {
+        margin-left: 0;
+        margin-top: var(--space-md);
+      }
+
+      .dashboard-container {
+        padding: var(--space-lg);
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Login Modal Overlay -->
+  <div id="loginOverlay" class="login-overlay">
+    <div class="login-modal">
+      <div class="login-header">
+        <div class="login-chef-icon">👨‍🍳</div>
+        <h1 class="login-title">Welcome to Chef Compadre</h1>
+        <p class="login-subtitle">Your AI Sous Chef</p>
+      </div>
+      
+      <div class="login-form">
+        <input 
+          type="email" 
+          id="loginEmail" 
+          class="login-input" 
+          placeholder="Enter your email"
+          autocomplete="email"
+        />
+        <button id="loginBtn" class="login-btn">
+          ✉️ Send Magic Link
+        </button>
+        
+        <div class="login-divider">or</div>
+        
+        <button id="continueAsGuestBtn" class="guest-btn">
+          Continue as Guest
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Dashboard View (hidden until logged in) -->
+  <div id="dashboardView" class="dashboard-container hidden">
+    <div class="dashboard">
+      
+      <!-- Welcome Hero Card -->
+      <div class="welcome-card">
+        <div class="welcome-icon">👨‍🍳</div>
+        <h1 class="welcome-title">Welcome Back, Chef!</h1>
+        <p class="welcome-subtitle">Ready to cook something amazing today?</p>
+        <button id="dashStartChatBtn" class="start-chat-btn" onclick="switchToChatView()">
+          💬 Start Cooking Chat
+        </button>
+        <button id="dashStartVoiceBtn" class="start-chat-btn start-voice-btn" onclick="switchToChatWithVoice()">
+          🎤 Voice Command
+        </button>
+      </div>
+
+      <!-- Stats Card -->
+      <div class="dash-card">
+        <div class="card-header">
+          <div class="card-icon">📊</div>
+          <h3 class="card-title">My Kitchen</h3>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-lg);">
+          <div>
+            <div class="stat-number" id="recipesCooked">0</div>
+            <div class="stat-label">Recipes</div>
+          </div>
+          <div>
+            <div class="stat-number" id="shoppingCount">0</div>
+            <div class="stat-label">Shopping List</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shopping List Card -->
+      <div class="dash-card">
+        <div class="card-header">
+          <div class="card-icon">🛒</div>
+          <h3 class="card-title">Shopping List</h3>
+        </div>
+        <div id="shoppingListWidget">
+          <div class="empty-state">
+            <p>🍽️ Your shopping list is empty</p>
+            <p style="margin-top: var(--space-sm); font-size: 0.75rem;">Chat with me to add items!</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Recipes Card -->
+      <div class="dash-card">
+        <div class="card-header">
+          <div class="card-icon">📖</div>
+          <h3 class="card-title">Recent Recipes</h3>
+        </div>
+        <div class="recipe-grid" id="recentRecipesWidget">
+          <div class="empty-state">
+            <p>🍳 No recipes yet</p>
+            <p style="margin-top: var(--space-sm); font-size: 0.75rem;">Ask me for a recipe to get started!</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <button class="menu-toggle btn-secondary" id="menuToggle" aria-label="Menu">
+        ☰
+      </button>
+      <button class="btn-secondary" id="backToDashboard" style="display: none; margin-left: var(--space-md);" onclick="switchToDashboard()" aria-label="Back to Dashboard">
+        ← Dashboard
+      </button>
+      <a href="/" class="logo">
+        <div class="logo-icon">👨‍🍳</div>
+        <span>Chef Compadre</span>
+      </a>
+    </div>
+    <div class="header-right">
+      <div id="statusText" class="status-text">Ready to help</div>
+      
+      <!-- Compact auth display -->
+      <div class="header-auth">
+        <!-- Logged in view -->
+        <div id="headerLoggedInView" style="display: none; align-items: center; gap: var(--space-sm);">
+          <span id="headerUserEmail" style="font-size: 0.875rem; color: var(--text-secondary);"></span>
+          <button id="headerSignOutBtn" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.375rem 0.75rem;">
+            Sign Out
+          </button>
+        </div>
+        
+        <!-- Guest view -->
+        <div id="headerGuestView" style="display: flex; align-items: center; gap: var(--space-sm);">
+          <span style="font-size: 0.875rem; color: var(--text-muted);">👤 Guest</span>
+          <button id="headerSignInBtn" class="btn btn-primary" style="font-size: 0.75rem; padding: 0.375rem 0.75rem;">
+            🔐 Sign In
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Chat View (Initially Hidden) -->
+  <div id="chatView" class="chat-view">
+    <div class="app-container">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      
+      <!-- Voice Section -->
+      <div class="sidebar-section">
+        <h3 class="section-title">Voice Controls</h3>
+        
+        <div style="display: flex; gap: var(--space-sm); margin-bottom: var(--space-md);">
+          <button id="chopChopBtn" class="btn btn-primary" style="flex: 1;">
+            🎯 ChopChop Mode
+          </button>
+          <button id="muteTtsBtn" class="btn btn-secondary" style="min-width: 44px; padding: 0.5rem;">
+            🔊
+          </button>
+        </div>
+        
+        <div class="voice-control">
+          <label for="voiceSelect">Voice</label>
+          <select id="voiceSelect">
+            <option value="">Loading voices...</option>
+          </select>
+        </div>
+
+        <div class="voice-control">
+          <label for="rateSlider">Speed</label>
+          <input type="range" id="rateSlider" min="0.5" max="2" step="0.1" value="1" />
+          <span id="rateValue" class="text-muted" style="min-width: 40px; text-align: right;">1.0x</span>
+        </div>
+
+        <button id="testVoice" class="btn btn-secondary">
+          🔊 Test Voice
+        </button>
+      </div>
+
+      <!-- Reference Section -->
+      <div class="sidebar-section">
+        <h3 class="section-title">Reference Images</h3>
+        <button id="refBtn" class="btn btn-primary" style="width: 100%;">
+          🔍 Search Reference Images
+        </button>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: var(--space-sm); text-align: center;">Get visual references for any dish or ingredient</p>
+      </div>
+
+      <!-- Learn Recipe Section -->
+      <div class="sidebar-section">
+        <h3 class="section-title">
+          Learn Recipe
+          <span style="font-size: 0.625rem; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 0.125rem 0.5rem; border-radius: 999px; margin-left: 0.5rem; font-weight: 700;">COMING SOON! 🎉</span>
+        </h3>
+        <div class="form-group">
+          <label for="urlInput">YouTube or Blog URL</label>
+          <input type="url" id="urlInput" placeholder="https://youtube.com/..." disabled style="opacity: 0.6;" />
+        </div>
+        <button id="learnUrlBtn" class="btn btn-secondary" style="width: 100%; opacity: 0.6; cursor: not-allowed;" disabled>
+          📖 Learn Recipe (Coming Soon!)
+        </button>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: var(--space-sm); text-align: center;">We're refining this feature to make it even better! 🚀</p>
+      </div>
+
+      <!-- Image Analysis Section -->
+      <div class="sidebar-section">
+        <h3 class="section-title">
+          Image Analysis
+          <span style="font-size: 0.625rem; background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; padding: 0.125rem 0.5rem; border-radius: 999px; margin-left: 0.5rem; font-weight: 700;">COMING SOON! 🎉</span>
+        </h3>
+        <div class="form-group">
+          <label for="imageInput">Upload Image</label>
+          <input type="file" id="imageInput" accept="image/*" disabled style="opacity: 0.6;" />
+        </div>
+        <button id="analyzeImageBtn" class="btn btn-secondary" style="width: 100%; opacity: 0.6; cursor: not-allowed;" disabled>
+          📸 Analyze Image (Coming Soon!)
+        </button>
+        <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: var(--space-sm); text-align: center;">Exciting updates on the way! ✨</p>
+      </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main>
+      <div class="main-content">
+        <div class="chat-messages" id="chatMessages">
+          <!-- Welcome Message -->
+          <div class="message assistant">
+            <div class="message-avatar">👨‍🍳</div>
+            <div class="message-content">
+              <div class="message-bubble">
+                <div class="message-text">
+Welcome! I'm Chef Compadre, your AI sous chef. 
+
+I can help you with:
+• 🍳 Recipe suggestions and cooking guidance
+• 🔄 Ingredient substitutions
+• 🛒 Building your shopping list
+• 💾 Saving recipes for later
+• 🖼️ Reference images (say "show me a picture")
+• 🎤 Voice conversations
+
+📸 Image Analysis & 📖 URL Learning coming soon!
+
+How can I assist you today?
+                </div>
+              </div>
+              <div class="message-time">Just now</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div class="typing-indicator" id="typingIndicator">
+          <div class="typing-dots">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+          </div>
+          <span>Chef Compadre is thinking...</span>
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="input-area">
+        <div class="input-container">
+          <textarea
+            id="chatInput"
+            placeholder="Type your message or use voice..."
+            rows="1"
+          ></textarea>
+          <button id="voiceBtn" class="btn-icon" aria-label="Voice input">
+            🎤
+          </button>
+          <button id="sendBtn" class="btn btn-primary" aria-label="Send message">
+            ➤
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    // ==============================================
+    // INITIALIZATION
+    // ==============================================
+    
+    let currentUser = null;
+    let sb = null;
+    let recognition = null;
+    let ttsVoice = null;
+    let ttsRate = 1.0;
+    let isRecording = false;
+    let isTtsMuted = false;  // Track TTS mute state
+    let isWakeWordMode = false;  // Track if we're in wake word detection mode
+    let wakeWordTimeout = null;
+    let lastAiResponseTime = null;  // Track when AI last responded for auto-continue
+    let autoContinueWindow = 8000;  // 8 seconds to auto-continue listening
+
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const voiceBtn = document.getElementById('voiceBtn');
+    const typingIndicator = document.getElementById('typingIndicator');
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    // Initialize Supabase
+    async function initSupabase() {
+      console.log('🚀 Initializing Supabase...');
+      try {
+        const response = await fetch('/api/public_config');
+        if (!response.ok) {
+          throw new Error(`Config fetch failed: ${response.status}`);
+        }
+        const config = await response.json();
+        console.log('📦 Config received:', { 
+          hasUrl: !!config.supabaseUrl, 
+          hasKey: !!config.supabaseAnonKey 
+        });
+        
+        if (config.supabaseUrl && config.supabaseAnonKey) {
+          sb = supabase.createClient(config.supabaseUrl, config.supabaseAnonKey);
+          console.log('✅ Supabase initialized');
+          await handleMagicLinkRedirect();
+          await checkAuthStatus();
+        } else {
+          console.warn('⚠️ Supabase config incomplete');
+          await checkAuthStatus(); // Will show login modal
+        }
+      } catch (error) {
+        console.error('❌ Supabase init failed:', error);
+        await checkAuthStatus(); // Will show login modal
+      }
+    }
+
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('🚀 DOMContentLoaded fired!');
+      
+      // Initialize login modal buttons FIRST (they're visible immediately)
+      initializeLoginModal();
+      
+      initSupabase();
+      initSpeechRecognition();
+      loadVoices();
+      initializeEventListeners();
+      initializeDashboard();
+      
+      // Auto-resize textarea
+      chatInput.addEventListener('input', () => {
+        chatInput.style.height = 'auto';
+        chatInput.style.height = chatInput.scrollHeight + 'px';
+      });
+
+      // Send on Enter
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
+    });
+
+    // ==============================================
+    // MOBILE MENU
+    // ==============================================
+    
+    menuToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('show');
+      overlay.classList.toggle('show');
+    });
+
+    overlay.addEventListener('click', () => {
+      sidebar.classList.remove('show');
+      overlay.classList.remove('show');
+    });
+
+    // ==============================================
+    // CHAT FUNCTIONS
+    // ==============================================
+    
+    function updateStatus(type, message) {
+      const statusText = document.getElementById('statusText');
+      if (!statusText) return;
+      
+      statusText.textContent = message;
+      statusText.className = 'status-text';
+      
+      if (type === 'error') {
+        statusText.style.color = 'var(--danger)';
+      } else if (type === 'processing') {
+        statusText.style.color = 'var(--warning)';
+      } else {
+        statusText.style.color = 'var(--text-secondary)';
+      }
+    }
+
+    function addMessage(role, content) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${role}`;
+      
+      const avatar = role === 'user' ? '👤' : '👨‍🍳';
+      const time = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      
+      messageDiv.innerHTML = `
+        <div class="message-avatar">${avatar}</div>
+        <div class="message-content">
+          <div class="message-bubble">
+            <div class="message-text">${content}</div>
+          </div>
+          <div class="message-time">${time}</div>
+        </div>
+      `;
+      
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      
+      // Track AI response time for auto-continue ChopChop
+      if (role === 'assistant') {
+        lastAiResponseTime = Date.now();
+        console.log('⏱️ AI responded - Auto-continue window active for 8 seconds');
+      }
+      
+      // Close mobile menu after sending
+      if (window.innerWidth <= 768) {
+        sidebar.classList.remove('show');
+        overlay.classList.remove('show');
+      }
+    }
+
+    function showTypingIndicator() {
+      typingIndicator.classList.add('active');
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function hideTypingIndicator() {
+      typingIndicator.classList.remove('active');
+    }
+
+    async function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      // Add user message
+      addMessage('user', text);
+      chatInput.value = '';
+      chatInput.style.height = 'auto';
+      
+      showTypingIndicator();
+      updateStatus('processing', 'Thinking...');
+
+      try {
+        const response = await fetch('/api/conversation_consolidated', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_id: getUserId(),
+            text: text
+          })
+        });
+
+        const data = await response.json();
+        hideTypingIndicator();
+
+        // Unified handling: show anything we have (reply, nutrition, actions)
+        let hadContent = false;
+
+        // Text reply (if any)
+        if (data.reply && String(data.reply).trim().length > 0) {
+          addMessage('assistant', data.reply);
+          speak(data.reply);
+          hadContent = true;
+        }
+
+        // Nutrition card (if any)
+        if (data.nutrition) {
+          addNutritionCard(data.nutrition);
+          hadContent = true;
+        }
+
+        // Agent actions (e.g., reference_images) should be processed even if reply is empty
+        if (data.actions && data.actions.length > 0) {
+          handleAgentActions(data.actions);
+          hadContent = true;
+        }
+
+        if (!hadContent) {
+          addMessage('assistant', 'Sorry, I encountered an issue. Please try again.');
+          updateStatus('error', 'Error occurred');
+        } else {
+          updateStatus('', 'Ready to help');
+        }
+      } catch (error) {
+        console.error('Send error:', error);
+        hideTypingIndicator();
+        addMessage('assistant', 'Sorry, I had trouble processing that. Please try again.');
+        updateStatus('error', 'Connection error');
+      }
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+
+    // ==============================================
+    // TEXT-TO-SPEECH
+    // ==============================================
+    
+    function speak(text) {
+      if (!text || !window.speechSynthesis || isTtsMuted) {
+        if (isTtsMuted) console.log('🔇 TTS muted, skipping speech');
+        return;
+      }
+      
+      // Cancel any ongoing speech
+      window.speechSynthesis.cancel();
+      
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = ttsRate;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      
+      if (ttsVoice) {
+        utterance.voice = ttsVoice;
+      }
+      
+      utterance.onstart = () => console.log('🔊 Speaking...');
+      utterance.onend = () => console.log('✅ Speech complete');
+      utterance.onerror = (e) => console.error('❌ Speech error:', e);
+      
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function loadVoices() {
+      const voiceSelect = document.getElementById('voiceSelect');
+      
+      function populateVoices() {
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+        
+        voiceSelect.innerHTML = '';
+        englishVoices.forEach((voice, index) => {
+          const option = document.createElement('option');
+          option.value = index;
+          option.textContent = `${voice.name} (${voice.lang})`;
+          voiceSelect.appendChild(option);
+        });
+        
+        // Set default voice
+        if (englishVoices.length > 0) {
+          ttsVoice = englishVoices[0];
+        }
+      }
+      
+      populateVoices();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoices;
+      }
+      
+      voiceSelect.addEventListener('change', () => {
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoices = voices.filter(v => v.lang.startsWith('en'));
+        ttsVoice = englishVoices[voiceSelect.value];
+      });
+    }
+
+    // Rate slider
+    document.getElementById('rateSlider').addEventListener('input', (e) => {
+      ttsRate = parseFloat(e.target.value);
+      document.getElementById('rateValue').textContent = ttsRate.toFixed(1) + 'x';
+    });
+
+    // Test voice
+    document.getElementById('testVoice').addEventListener('click', () => {
+      speak('Hello! This is how I sound. Let\'s cook something delicious together!');
+    });
+
+    // ==============================================
+    // SPEECH RECOGNITION
+    // ==============================================
+    
+    function initSpeechRecognition() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        console.warn('Speech recognition not supported');
+        voiceBtn.disabled = true;
+        return;
+      }
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = true;  // Enable continuous listening for wake word
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      recognition.onstart = () => {
+        isRecording = true;
+        voiceBtn.classList.add('listening');
+        voiceBtn.textContent = '🔴';
+        
+        if (isWakeWordMode) {
+          updateStatus('processing', '👂 Say "ChopChop" to activate...');
+        } else {
+          updateStatus('processing', 'Listening...');
+        }
+      };
+
+      recognition.onresult = (event) => {
+        const result = event.results[event.results.length - 1];
+        const transcript = result[0].transcript.toLowerCase().trim();
+        console.log('🎤 Heard:', transcript, '(final:', result.isFinal + ')');
+        
+        if (!result.isFinal) return;  // Only process final results
+        
+        const timeSinceAiResponse = Date.now() - (lastAiResponseTime || 0);
+        const inAutoContinueWindow = timeSinceAiResponse < autoContinueWindow;
+        
+        // Check for wake word
+        if (isWakeWordMode) {
+          // OPTION C: Skip wake word if in auto-continue window (within 8s of AI response)
+          if (inAutoContinueWindow) {
+            console.log('✅ Auto-continue active - processing command directly (no wake word needed)');
+            chatInput.value = transcript;
+            sendMessage();
+            // Stay in wake word mode for next auto-continue
+            updateStatus('processing', '👂 Listening...');
+          } else if (transcript.includes('chop chop') || transcript.includes('chopchop')) {
+            console.log('🎯 Wake word detected!');
+            updateStatus('success', '✅ ChopChop activated! Listening for your command...');
+            lastAiResponseTime = Date.now();  // Activate auto-continue window
+            
+            // Auto-stop after 10 seconds if no command given
+            wakeWordTimeout = setTimeout(() => {
+              console.log('⏱️ Command timeout, returning to wake word mode');
+              updateStatus('processing', '👂 Say "ChopChop" to activate...');
+              lastAiResponseTime = 0;  // Reset auto-continue
+            }, 10000);
+          }
+        }
+      };
+
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        if (event.error !== 'no-speech') {
+          updateStatus('error', 'Voice input failed');
+          stopRecording();
+        }
+      };
+
+      recognition.onend = () => {
+        // If we're in wake word mode, check if we should auto-continue
+        if (isWakeWordMode && isRecording) {
+          const timeSinceAiResponse = Date.now() - (lastAiResponseTime || 0);
+          
+          // Auto-continue if within 8 seconds of last AI response
+          if (timeSinceAiResponse < autoContinueWindow) {
+            console.log(`🔄 Auto-continue: ${Math.round((autoContinueWindow - timeSinceAiResponse) / 1000)}s remaining...`);
+            try {
+              recognition.start();
+            } catch (e) {
+              console.warn('Recognition restart failed:', e);
+              stopRecording();
+            }
+          } else {
+            // Outside auto-continue window, restart in wake word mode
+            console.log('🔄 Restarting wake word detection (auto-continue window expired)...');
+            try {
+              recognition.start();
+            } catch (e) {
+              console.warn('Recognition restart failed:', e);
+              stopRecording();
+            }
+          }
+        } else {
+          stopRecording();
+        }
+      };
+    }
+
+    function stopRecording() {
+      isRecording = false;
+      voiceBtn.classList.remove('listening');
+      voiceBtn.textContent = '🎤';
+      updateStatus('', 'Ready to help');
+    }
+
+    voiceBtn.addEventListener('click', () => {
+      if (!recognition) {
+        alert('Voice input not supported in your browser');
+        return;
+      }
+
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        // Check if shift key is held for wake word mode
+        if (event.shiftKey) {
+          isWakeWordMode = true;
+          updateStatus('processing', '👂 Wake word mode: Say "ChopChop" to activate...');
+        }
+        recognition.start();
+      }
+    });
+
+    // ChopChop Mode Button
+    const chopChopBtn = document.getElementById('chopChopBtn');
+    if (chopChopBtn) {
+      chopChopBtn.addEventListener('click', () => {
+        if (!recognition) {
+          alert('Voice input not supported in your browser');
+          return;
+        }
+
+        if (isRecording && isWakeWordMode) {
+          // Turn off wake word mode
+          recognition.stop();
+          isWakeWordMode = false;
+          chopChopBtn.textContent = '🎯 ChopChop Mode';
+          chopChopBtn.classList.remove('btn-danger');
+          chopChopBtn.classList.add('btn-primary');
+          updateStatus('', 'Ready to help');
+        } else {
+          // Turn on wake word mode
+          isWakeWordMode = true;
+          chopChopBtn.textContent = '🛑 Stop ChopChop';
+          chopChopBtn.classList.remove('btn-primary');
+          chopChopBtn.classList.add('btn-danger');
+          recognition.start();
+        }
+      });
+    }
+
+    // Mute TTS Button
+    const muteTtsBtn = document.getElementById('muteTtsBtn');
+    if (muteTtsBtn) {
+      muteTtsBtn.addEventListener('click', () => {
+        isTtsMuted = !isTtsMuted;
+        
+        if (isTtsMuted) {
+          muteTtsBtn.textContent = '🔇';
+          muteTtsBtn.style.opacity = '0.6';
+          window.speechSynthesis.cancel();  // Stop any ongoing speech
+          console.log('🔇 TTS muted');
+        } else {
+          muteTtsBtn.textContent = '🔊';
+          muteTtsBtn.style.opacity = '1';
+          console.log('🔊 TTS unmuted');
+        }
+      });
+    }
+
+    // ==============================================
+    // UTILITY FUNCTIONS
+    // ==============================================
+    
+    function getUserId() {
+      return currentUser?.id || 'demo-user';
+    }
+
+    function addNutritionCard(nutritionData) {
+      const nutritionDiv = document.createElement('div');
+      nutritionDiv.className = 'nutrition-card';
+      
+      nutritionDiv.innerHTML = `
+        <div class="nutrition-header">
+          <span>🍎</span>
+          <h3 class="nutrition-title">Nutrition Information</h3>
+        </div>
+        <div class="nutrition-grid">
+          <div class="nutrition-item">
+            <div class="nutrition-value">${nutritionData.calories || 'N/A'}</div>
+            <div class="nutrition-label">Calories</div>
+          </div>
+          <div class="nutrition-item">
+            <div class="nutrition-value">${nutritionData.protein || 'N/A'}</div>
+            <div class="nutrition-label">Protein (g)</div>
+          </div>
+          <div class="nutrition-item">
+            <div class="nutrition-value">${nutritionData.carbs || 'N/A'}</div>
+            <div class="nutrition-label">Carbs (g)</div>
+          </div>
+          <div class="nutrition-item">
+            <div class="nutrition-value">${nutritionData.fat || 'N/A'}</div>
+            <div class="nutrition-label">Fat (g)</div>
+          </div>
+        </div>
+      `;
+      
+      chatMessages.appendChild(nutritionDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function handleAgentActions(actions) {
+      console.log('🔧 handleAgentActions called with:', actions);
+      if (!actions || actions.length === 0) {
+        console.warn('⚠️ No actions received!');
+        return;
+      }
+      
+      actions.forEach(action => {
+        console.log('✅ Processing action:', action);
+        
+        // Handle reference images
+        if (action.action === 'reference_images') {
+          console.log('🖼️ Reference images action detected!');
+          const query = action.query || 'cooking';
+          const url = `/reference.html?q=${encodeURIComponent(query)}`;
+          console.log('🖼️ Reference images URL:', url);
+
+          // Escape query for safe HTML insertion
+          const safeQuery = query.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+          // Try to open popup (may be blocked by browser)
+          let opened = null;
+          try {
+            opened = window.open(url, 'refImages', 'width=800,height=600');
+            // Check if popup was actually opened (browsers may block silently)
+            setTimeout(() => {
+              if (opened && !opened.closed && typeof opened.closed !== 'undefined') {
+                console.log('✅ Popup opened successfully');
+              } else {
+                console.log('⚠️ Popup was blocked by browser');
+              }
+            }, 100);
+          } catch (e) {
+            console.warn('Popup open threw:', e);
+          }
+
+          // ALWAYS show a clickable button - guaranteed to work since it's a user gesture
+          const buttonHtml = `
+            <div style="margin-top: 12px; padding: 12px; background: rgba(99, 102, 241, 0.1); border-radius: 8px; border: 1px solid rgba(99, 102, 241, 0.3);">
+              <div style="margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary);">🖼️ Reference images ready for <strong>${safeQuery}</strong></div>
+              <a href="${url}" target="_blank" rel="noopener" 
+                 style="display: inline-block; padding: 8px 16px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); color: white; text-decoration: none; border-radius: 6px; font-weight: 500; font-size: 0.9rem; transition: transform 0.2s;"
+                 onmouseover="this.style.transform='scale(1.05)'"
+                 onmouseout="this.style.transform='scale(1)'">
+                🔍 Open Reference Images
+              </a>
+            </div>
+          `;
+          
+          addMessage('assistant', `🖼️ Here are reference images for <strong>${safeQuery}</strong>:${buttonHtml}`);
+          console.log('✅ Reference images button displayed');
+        } else {
+          console.log('ℹ️ Action type:', action.action, '- not reference_images');
+        }
+        
+        // Handle other actions
+        if (action.message) {
+          console.log('Action message:', action.message);
+        }
+      });
+    }
+
+    // ==============================================
+    // AUTHENTICATION
+    // ==============================================
+    
+    async function checkAuthStatus() {
+      console.log('🔍 Checking auth status...');
+      const loginOverlay = document.getElementById('loginOverlay');
+      
+      if (!sb) {
+        // No Supabase, show login modal as a fallback
+        console.log('⚠️ No Supabase client, showing login modal');
+        if (loginOverlay) {
+          loginOverlay.classList.remove('hidden');
+        }
+        return;
+      }
+
+      try {
+        const { data: { user }, error } = await sb.auth.getUser();
+        if (error) throw error;
+        
+        currentUser = user;
+        
+        if (user) {
+          // User is logged in - hide login modal, show dashboard
+          console.log('✅ User logged in:', user.email);
+          if (loginOverlay) loginOverlay.classList.add('hidden');
+          
+          // Show dashboard
+          const dashboardView = document.getElementById('dashboardView');
+          if (dashboardView) {
+            dashboardView.classList.remove('hidden');
+            console.log('✅ Dashboard shown');
+          }
+          
+          // Update header auth display
+          const headerLoggedInView = document.getElementById('headerLoggedInView');
+          const headerGuestView = document.getElementById('headerGuestView');
+          const headerUserEmail = document.getElementById('headerUserEmail');
+          
+          if (headerLoggedInView) headerLoggedInView.style.display = 'flex';
+          if (headerGuestView) headerGuestView.style.display = 'none';
+          if (headerUserEmail) headerUserEmail.textContent = user.email;
+          
+          // Show back button (logged in users can go back to dashboard)
+          const backBtn = document.getElementById('backToDashboard');
+          if (backBtn) backBtn.style.display = 'inline-block';
+          
+          // Load dashboard data
+          loadDashboardData();
+        } else {
+          // Not logged in - show login modal
+          console.log('ℹ️ No user logged in, showing login modal');
+          if (loginOverlay) {
+            loginOverlay.classList.remove('hidden');
+            console.log('✅ Login modal displayed');
+          }
+        }
+      } catch (error) {
+        console.error('❌ Auth check failed:', error);
+        // On error, show login modal
+        if (loginOverlay) {
+          loginOverlay.classList.remove('hidden');
+          console.log('⚠️ Showing login modal due to auth error');
+        }
+      }
+    }
+
+    async function handleMagicLinkRedirect() {
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      const accessToken = hashParams.get('access_token');
+      const refreshToken = hashParams.get('refresh_token');
+
+      if (accessToken && refreshToken && sb) {
+        try {
+          await sb.auth.setSession({ access_token: accessToken, refresh_token: refreshToken });
+          window.history.replaceState(null, '', window.location.pathname);
+          checkAuthStatus();
+          addMessage('assistant', '✅ Successfully signed in! How can I help you today?');
+        } catch (error) {
+          console.error('Session set failed:', error);
+        }
+      }
+    }
+
+    // ==============================================
+    // OTHER FEATURES
+    // ==============================================
+    
+    function initializeEventListeners() {
+      // Reference images button - THIS MUST WORK!
+      const refBtn = document.getElementById('refBtn');
+      if (refBtn) {
+        refBtn.addEventListener('click', () => {
+          console.log('🔍 Reference button clicked!');
+          const query = prompt('What would you like to see reference images for?');
+          if (query) {
+            console.log('🔍 Opening reference images for:', query);
+            window.open(`/reference.html?q=${encodeURIComponent(query)}`, 'refImages', 'width=800,height=600');
+          }
+        });
+        console.log('✅ Reference images button listener attached');
+      } else {
+        console.error('❌ refBtn not found!');
+      }
+
+      // Learn from URL (Coming Soon - might be disabled)
+      const learnUrlBtn = document.getElementById('learnUrlBtn');
+      if (learnUrlBtn && !learnUrlBtn.disabled) {
+        learnUrlBtn.addEventListener('click', async () => {
+        const url = document.getElementById('urlInput').value.trim();
+        if (!url) {
+          alert('Please enter a URL');
+          return;
+        }
+
+        try {
+          const btn = document.getElementById('learnUrlBtn');
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner"></span> Learning...';
+          
+          showTypingIndicator();
+          updateStatus('processing', 'Learning recipe...');
+          
+          const response = await fetch('/api/learn_url', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url, user_id: getUserId() })
+          });
+
+          const data = await response.json();
+          hideTypingIndicator();
+          
+          if (data.recipe) {
+            const recipeMessage = `
+📖 **${data.recipe.title}**
+
+${data.recipe.description || ''}
+
+⏱️ **Time:** ${data.recipe.prep_time || 'N/A'}min prep + ${data.recipe.cook_time || 'N/A'}min cook
+👥 **Servings:** ${data.recipe.servings || 'N/A'}
+📊 **Difficulty:** ${data.recipe.difficulty || 'N/A'}
+
+✅ Recipe saved! Ask me anything about it or say "guide me through cooking this" for step-by-step instructions.
+            `.trim();
+            
+            addMessage('assistant', recipeMessage);
+            
+            if (data.nutrition) {
+              addNutritionCard(data.nutrition);
+            }
+            
+            speak('I\'ve learned that recipe! Just ask if you need help cooking it.');
+            document.getElementById('urlInput').value = '';
+          } else {
+            addMessage('assistant', `Sorry, I couldn't learn from that URL. ${data.error || ''}`);
+          }
+          
+          updateStatus('', 'Ready to help');
+          btn.disabled = false;
+          btn.textContent = '📖 Learn Recipe';
+        } catch (error) {
+          console.error('URL learning error:', error);
+          hideTypingIndicator();
+          addMessage('assistant', 'Sorry, I encountered an error while learning from that URL.');
+          updateStatus('error', 'Error occurred');
+          
+          const btn = document.getElementById('learnUrlBtn');
+          btn.disabled = false;
+          btn.textContent = '📖 Learn Recipe';
+        }
+        });
+      }
+
+      // Image analysis (Coming Soon - might be disabled)
+      const analyzeImageBtn = document.getElementById('analyzeImageBtn');
+      if (analyzeImageBtn && !analyzeImageBtn.disabled) {
+        analyzeImageBtn.addEventListener('click', async () => {
+        const fileInput = document.getElementById('imageInput');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+          alert('Please select an image');
+          return;
+        }
+
+        try {
+          const btn = document.getElementById('analyzeImageBtn');
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner"></span> Analyzing...';
+          
+          showTypingIndicator();
+          updateStatus('processing', 'Analyzing image...');
+          
+          const formData = new FormData();
+          formData.append('image', file);
+          formData.append('prompt', 'Analyze this cooking-related image');
+
+          const response = await fetch('/api/analyze_image', {
+            method: 'POST',
+            body: formData
+          });
+
+          const data = await response.json();
+          hideTypingIndicator();
+          
+          if (data.analysis) {
+            addMessage('assistant', `📸 **Image Analysis:**\n\n${data.analysis}`);
+            speak('I\'ve analyzed your image. Here\'s what I found.');
+          } else {
+            addMessage('assistant', 'Sorry, I couldn\'t analyze that image.');
+          }
+          
+          updateStatus('', 'Ready to help');
+          btn.disabled = false;
+          btn.textContent = '📸 Analyze Image';
+          fileInput.value = '';
+        } catch (error) {
+          console.error('Image analysis error:', error);
+          hideTypingIndicator();
+          addMessage('assistant', 'Sorry, I encountered an error analyzing that image.');
+          updateStatus('error', 'Error occurred');
+          
+          const btn = document.getElementById('analyzeImageBtn');
+          btn.disabled = false;
+          btn.textContent = '📸 Analyze Image';
+        }
+        });
+      }
+    }
+
+    // ==============================================
+    // DASHBOARD DATA LOADING
+    // ==============================================
+    
+    async function loadDashboardData() {
+      if (!currentUser) {
+        console.log('No user logged in - showing empty dashboard');
+        return;
+      }
+
+      try {
+        // Fetch shopping list count
+        const shoppingResponse = await fetch('/api/conversation_consolidated', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_id: currentUser.id,
+            action: 'get_shopping_list'
+          })
+        });
+        
+        if (shoppingResponse.ok) {
+          const shoppingData = await shoppingResponse.json();
+          const shoppingList = shoppingData.items || [];
+          document.getElementById('shoppingCount').textContent = shoppingList.length;
+          
+          // Update shopping list widget
+          const widget = document.getElementById('shoppingListWidget');
+          if (shoppingList.length > 0) {
+            widget.innerHTML = shoppingList.slice(0, 5).map(item => `
+              <div class="shopping-item">
+                <span>${item.name}${item.quantity ? ` (${item.quantity})` : ''}</span>
+              </div>
+            `).join('') + (shoppingList.length > 5 ? `<p style="text-align: center; margin-top: var(--space-md); font-size: 0.75rem; color: var(--text-muted);">+${shoppingList.length - 5} more items</p>` : '');
+          }
+        }
+
+        // Fetch saved recipes
+        const recipesResponse = await fetch('/api/conversation_consolidated', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            user_id: currentUser.id,
+            action: 'get_recipes'
+          })
+        });
+        
+        if (recipesResponse.ok) {
+          const recipesData = await recipesResponse.json();
+          const recipes = recipesData.recipes || [];
+          document.getElementById('recipesCooked').textContent = recipes.length;
+          
+          // Update recipes widget
+          const widget = document.getElementById('recentRecipesWidget');
+          if (recipes.length > 0) {
+            widget.innerHTML = recipes.slice(0, 3).map((recipe, idx) => {
+              const emoji = ['🍝', '🥗', '🍕', '🍰', '🥘', '🍱'][idx % 6];
+              return `
+                <div class="recipe-item" onclick="switchToChatView()">
+                  <div class="recipe-emoji">${emoji}</div>
+                  <div class="recipe-info">
+                    <div class="recipe-name">${recipe.title}</div>
+                    <div class="recipe-meta">Click to ask about this recipe</div>
+                  </div>
+                </div>
+              `;
+            }).join('');
+          }
+        }
+      } catch (error) {
+        console.error('Error loading dashboard data:', error);
+      }
+    }
+
+    // ==============================================
+    // LOGIN MODAL INITIALIZATION (runs first!)
+    // ==============================================
+    
+    function initializeLoginModal() {
+      console.log('🔐 Initializing login modal...');
+      
+      const loginBtn = document.getElementById('loginBtn');
+      const loginEmail = document.getElementById('loginEmail');
+      const guestBtn = document.getElementById('continueAsGuestBtn');
+      
+      console.log('Login elements:', { loginBtn: !!loginBtn, loginEmail: !!loginEmail, guestBtn: !!guestBtn });
+      
+      if (loginBtn && loginEmail) {
+        console.log('✅ Login button found, attaching listener');
+        loginBtn.addEventListener('click', async () => {
+          console.log('📧 Login button clicked!');
+          const email = loginEmail.value.trim();
+          
+          if (!email || !email.includes('@')) {
+            alert('Please enter an email address');
+            return;
+          }
+          
+          loginBtn.disabled = true;
+          loginBtn.textContent = 'Sending...';
+          
+          try {
+            // Use the same API call as the working sidebar code
+            const response = await fetch('/api/auth', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ action: 'send_magic_link', email })
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok) {
+              alert('✅ Magic link sent! Check your email.');
+              loginEmail.value = '';
+            } else {
+              alert(`❌ ${data.error || 'Failed to send magic link'}`);
+            }
+          } catch (error) {
+            console.error('Login error:', error);
+            alert('❌ Error sending magic link. Please try again.');
+          } finally {
+            loginBtn.disabled = false;
+            loginBtn.textContent = '✉️ Send Magic Link';
+          }
+        });
+        
+        // Allow Enter key to send
+        loginEmail.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            loginBtn.click();
+          }
+        });
+      }
+      
+      if (guestBtn) {
+        guestBtn.addEventListener('click', () => {
+          console.log('🚶 Guest button clicked - going straight to chat');
+          
+          // Hide login modal
+          const loginOverlay = document.getElementById('loginOverlay');
+          if (loginOverlay) loginOverlay.classList.add('hidden');
+          
+          // Set guest mode
+          currentUser = null;
+          
+          // Update header to show guest
+          const headerLoggedInView = document.getElementById('headerLoggedInView');
+          const headerGuestView = document.getElementById('headerGuestView');
+          if (headerLoggedInView) headerLoggedInView.style.display = 'none';
+          if (headerGuestView) headerGuestView.style.display = 'flex';
+          
+          // Go straight to chat (skip dashboard)
+          const dashboardView = document.getElementById('dashboardView');
+          const chatView = document.getElementById('chatView');
+          const backBtn = document.getElementById('backToDashboard');
+          
+          if (dashboardView) dashboardView.classList.add('hidden');
+          if (chatView) chatView.classList.add('active');
+          if (backBtn) backBtn.style.display = 'none'; // Hide back button for guests!
+          
+          console.log('✅ Guest mode: Straight to chat, no dashboard access');
+          
+          // Focus chat input
+          setTimeout(() => {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) chatInput.focus();
+          }, 300);
+        });
+      }
+    }
+
+    function initializeDashboard() {
+      console.log('🎯 Initializing dashboard...');
+      
+      // Wire up header auth buttons
+      const headerSignInBtn = document.getElementById('headerSignInBtn');
+      const headerSignOutBtn = document.getElementById('headerSignOutBtn');
+      
+      // Header Sign In button - opens login modal
+      if (headerSignInBtn) {
+        headerSignInBtn.addEventListener('click', () => {
+          const loginOverlay = document.getElementById('loginOverlay');
+          if (loginOverlay) loginOverlay.classList.remove('hidden');
+        });
+      }
+      
+      // Header Sign Out button
+      if (headerSignOutBtn) {
+        headerSignOutBtn.addEventListener('click', async () => {
+          if (!sb) return;
+          
+          try {
+            await sb.auth.signOut();
+            currentUser = null;
+            
+            // Update header UI
+            const headerLoggedInView = document.getElementById('headerLoggedInView');
+            const headerGuestView = document.getElementById('headerGuestView');
+            if (headerLoggedInView) headerLoggedInView.style.display = 'none';
+            if (headerGuestView) headerGuestView.style.display = 'flex';
+            
+            // Hide dashboard and show login modal
+            const dashboardView = document.getElementById('dashboardView');
+            if (dashboardView) dashboardView.classList.add('hidden');
+            
+            const loginOverlay = document.getElementById('loginOverlay');
+            if (loginOverlay) loginOverlay.classList.remove('hidden');
+            
+            console.log('Signed out successfully');
+          } catch (error) {
+            console.error('Sign out error:', error);
+          }
+        });
+      }
+      
+      // Load initial data
+      loadDashboardData();
+    }
+
+    // ==============================================
+    // VIEW SWITCHING (DASHBOARD ←→ CHAT)
+    // ==============================================
+    
+    function switchToChatView() {
+      const dashboardView = document.getElementById('dashboardView');
+      const chatView = document.getElementById('chatView');
+      const backBtn = document.getElementById('backToDashboard');
+      
+      // Hide dashboard, show chat
+      dashboardView.classList.add('hidden');
+      chatView.classList.add('active');
+      if (backBtn) backBtn.style.display = 'inline-block';
+      
+      // Focus on chat input after transition
+      setTimeout(() => {
+        const chatInput = document.getElementById('chatInput');
+        if (chatInput) chatInput.focus();
+      }, 300);
+    }
+
+    function switchToChatWithVoice() {
+      switchToChatView();
+      
+      // Start voice recognition immediately
+      setTimeout(() => {
+        if (recognition) {
+          recognition.start();
+        } else {
+          alert('Voice input not available. Please use the microphone button.');
+        }
+      }, 500);
+    }
+
+    function switchToDashboard() {
+      const dashboardView = document.getElementById('dashboardView');
+      const chatView = document.getElementById('chatView');
+      const backBtn = document.getElementById('backToDashboard');
+      
+      // Hide chat, show dashboard
+      chatView.classList.remove('active');
+      dashboardView.classList.remove('hidden');
+      if (backBtn) backBtn.style.display = 'none';
+      
+      // Refresh dashboard data
+      loadDashboardData();
+    }
+
+    // Make functions globally available
+    window.switchToChatView = switchToChatView;
+    window.switchToChatWithVoice = switchToChatWithVoice;
+    window.switchToDashboard = switchToDashboard;
+
+    // Global debug functions
+    window.testTTS = () => speak('Testing text to speech functionality');
+    window.testVoiceRecognition = () => recognition && recognition.start();
+    
+    console.log('🧑‍🍳 Chef Compadre Beta with Dashboard - Ready!');
+    console.log('💡 Debug: window.testTTS() and window.testVoiceRecognition()');
+  </script>
+
+  </div> <!-- End Chat View -->
+
+  <!-- Footer -->
+  <footer style="position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(10px); padding: 8px 16px; text-align: center; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); z-index: 100;">
+    <p style="margin: 0;">
+      © 2025 Chef Compadre. For personal use only. 
+      <a href="/privacy.html" style="color: var(--text-accent); text-decoration: none; margin: 0 8px;" target="_blank">Privacy</a> • 
+      <a href="/terms.html" style="color: var(--text-accent); text-decoration: none; margin: 0 8px;" target="_blank">Terms</a>
+    </p>
+  </footer>
+
+</body>
+</html>
+

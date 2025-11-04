@@ -1,0 +1,26 @@
+{
+  "name": "chef-compadre",
+  "version": "1.0.0",
+  "description": "AI cooking assistant with voice, image, and chat capabilities",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "@google/generative-ai": "^0.21.0",
+    "formidable": "^3.5.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["cooking", "ai", "voice", "image", "chat", "assistant", "gemini", "supabase", "vercel"],
+  "author": "Mitali Tavildar",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mitali1045/cookalong-public.git"
+  }
+}
